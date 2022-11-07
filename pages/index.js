@@ -1,6 +1,7 @@
 import { CSSReset } from '../src/components/CSSReset';
 import Menu from '../src/components/Menu';
 import { StyledTimeline } from '../src/components/Timeline';
+import { StyledAluraTubes } from '../src/components/AluraTubes';
 
 import styled from 'styled-components';
 import config from '../config.json';
@@ -78,6 +79,24 @@ const Timeline = ({ playlists }) => {
   )
 }
 
+const AluraTubes = () => {
+  return (
+    <StyledAluraTubes>
+      <h2>AluraTubes favoritos</h2>
+      <div id="aluratubers">
+        {config.favorites.map((favorite) => {
+          return (
+            <div>
+              <img src={favorite.image} alt={`${favorite.name} profile image`}/>
+              <p>@{favorite.name}</p>
+            </div>
+          )
+        })}
+      </div>
+    </StyledAluraTubes>
+  )
+}
+
 const HomePage = () => {
   return (
     <>
@@ -90,6 +109,7 @@ const HomePage = () => {
         <Menu />
         <Header />
         <Timeline playlists={config.playlists} />
+        <AluraTubes />
       </main>
     </>
   )

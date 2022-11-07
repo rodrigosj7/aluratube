@@ -3,6 +3,20 @@
   "job": "estudante",
   "github": "sennshi",
   "banner-color": "#5C73B9",
+  "favorites": [
+    {
+      "name": "omariosouto",
+      "image": "https://github.com/omariosouto.png"
+    },
+    {
+      "name": "peas",
+      "image": "https://github.com/peas.png"
+    },
+    {
+      "name": "raffaballerini",
+      "image": "https://github.com/rafaballerini.png"
+    }
+  ],
   "playlists": {
     "front-end": [
       {
