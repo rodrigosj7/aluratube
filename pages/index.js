@@ -6,10 +6,21 @@ import styled from 'styled-components';
 import config from '../config.json';
 
 const StyledHeader = styled.header`
-  img {
+  display: flex;
+  flex-direction: column;
+
+  #profile {
     width: 85px;
     height: 85px;
     border-radius: 50%;
+  }
+
+  #banner {
+    object-fit: cover;
+    width: 100%;
+    height: 143px;
+    margin-top: 40px;
+    background-color: ${config["banner-color"]};
   }
 
   .user-info {
@@ -18,14 +29,18 @@ const StyledHeader = styled.header`
     width: 100%;
     padding: 16px 32px;
     gap: 16px;
-    margin-top: 50px
   }
 `
-const Header = () => {
+
+const Header = ({ banner }) => {
   return (
     <StyledHeader>
+      {banner
+        ? <img src={banner} alt="profile-banner" id="banner"/>
+        : <div id="banner"></div>
+      }
       <section className="user-info">
-        <img src={`https://github.com/${config.github}.png`} alt="profile-pic"/>
+        <img src={`https://github.com/${config.github}.png`} id="profile" alt="profile-pic"/>
         <div>
           <h2>{config.name}</h2>
           <p>{config.job}</p>
@@ -74,7 +89,7 @@ const HomePage = () => {
       }}>
         <Menu />
         <Header />
-        <Timeline playlists={config.playlists}/>
+        <Timeline playlists={config.playlists} />
       </main>
     </>
   )
