@@ -1,4 +1,5 @@
 import Search from './components/Search';
+import SwitchTheme from './components/SwitchTheme';
 import styled from 'styled-components';
 
 const StyledMenu = styled.header`
@@ -34,6 +35,7 @@ export default function Menu({ valorDoFiltro, setValorDoFiltro }) {
         <Logo/>
       </div>
       <Search valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro}/>
+      <SwitchTheme/>
     </StyledMenu>
   );
 }
