@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { CSSReset } from '../src/components/CSSReset';
 import Menu from '../src/components/Menu';
 import { StyledTimeline } from '../src/components/Timeline';
@@ -51,7 +52,7 @@ const Header = ({ banner }) => {
   )
 }
 
-const Timeline = ({ playlists }) => {
+const Timeline = ({ valorDaBusca, playlists }) => {
   const playlistNames = Object.keys(playlists);
 
   return (
@@ -60,11 +61,16 @@ const Timeline = ({ playlists }) => {
         const videos = playlists[playlistName]
 
         return (
-          <section>
+          <section key={playlistName}>
             <h2>{playlistName}</h2>
             <div>
-              {videos.map((video) => 
-                <a href={video.url}>
+              {videos.filter((video) => {
+                const titleNormalized = video.title.toLowerCase()
+                const searchValueNormalized = valorDaBusca.toLowerCase()
+
+                return titleNormalized.includes(searchValueNormalized);
+              }).map((video) => 
+                <a key={video.url} href={video.url}>
                   <img src={video.thumb} alt={`${video.title} thumbnail`} />
                   <span>
                     {video.title}
@@ -86,7 +92,7 @@ const AluraTubes = () => {
       <div id="aluratubers">
         {config.favorites.map((favorite) => {
           return (
-            <div>
+            <div key={favorite.name}>
               <img src={favorite.image} alt={`${favorite.name} profile image`}/>
               <p>@{favorite.name}</p>
             </div>
@@ -98,6 +104,8 @@ const AluraTubes = () => {
 }
 
 const HomePage = () => {
+  const [valorDoFiltro, setValorDoFiltro] = useState('');
+
   return (
     <>
       <CSSReset />
@@ -106,9 +114,9 @@ const HomePage = () => {
         flexDirection: "column",
         flex: 1,
       }}>
-        <Menu />
+        <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro} />
         <Header />
-        <Timeline playlists={config.playlists} />
+        <Timeline valorDaBusca={valorDoFiltro} playlists={config.playlists} />
         <AluraTubes />
       </main>
     </>
