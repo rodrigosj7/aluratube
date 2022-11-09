@@ -1,5 +1,5 @@
+import Link from 'next/link';
 import { useState } from 'react';
-import { CSSReset } from '../src/components/CSSReset';
 import Menu from '../src/components/Menu';
 import { StyledTimeline } from '../src/components/Timeline';
 import { StyledAluraTubes } from '../src/components/AluraTubes';
@@ -10,6 +10,7 @@ import config from '../config.json';
 const StyledHeader = styled.header`
   display: flex;
   flex-direction: column;
+  background-color: ${({ theme }) => theme.backgroundLevel1};
 
   #profile {
     width: 85px;
@@ -70,12 +71,16 @@ const Timeline = ({ valorDaBusca, playlists }) => {
 
                 return titleNormalized.includes(searchValueNormalized);
               }).map((video) => 
-                <a key={video.url} href={video.url}>
+                <Link key={video.url} 
+                  href={
+                    `/video/${video['url'].split('v=')[1]}?category=${playlistName}`
+                  }
+                >
                   <img src={video.thumb} alt={`${video.title} thumbnail`} />
                   <span>
                     {video.title}
                   </span>
-                </a>
+                </Link>
               )}
             </div>
           </section>
@@ -108,7 +113,6 @@ const HomePage = () => {
 
   return (
     <>
-      <CSSReset />
       <main style={{
         display: "flex",
         flexDirection: "column",
