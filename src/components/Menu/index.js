@@ -7,6 +7,7 @@ const StyledMenu = styled.header`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  z-index: 1;
   gap: 16px;
   position: fixed;
 
