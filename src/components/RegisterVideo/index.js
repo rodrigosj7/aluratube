@@ -1,5 +1,6 @@
 import { StyledRegisterVideo } from "./styles";
 import { useState } from "react";
+import { videoService } from "../../services/videoService";
 
 function useForm({ initialValue }) {
   const [values, setValues] = useState(initialValue);
@@ -16,7 +17,7 @@ function useForm({ initialValue }) {
       });
     },
     clearValues: () => {
-      setValues({ title: "", url: "" });
+      setValues({ title: "", url: "", category: "" });
     },
   };
 }
@@ -24,7 +25,7 @@ function useForm({ initialValue }) {
 export default function RegisterVideo() {
   const [modal, setModal] = useState(false);
   const { values, handleChange, clearValues } = useForm({
-    initialValue: { title: "", url: "" },
+    initialValue: { title: "", url: "", category: "" },
   });
 
   return (
@@ -37,16 +38,28 @@ export default function RegisterVideo() {
           onSubmit={(e) => {
             e.preventDefault();
             const isCorrectUrl =
-              /^((https|http):\/\/)?(www\.)?youtube.com\/watch\/\?v=/.test(
+              /^((https|http):\/\/(www|m)\.?)?youtube.com\/(watch\/?)\?v=\w*$/.test(
                 values.url
               );
 
-            if (isCorrectUrl) {
+            if (isCorrectUrl && values.url.split("?v=")[1].length === 11) {
+              const video = {
+                title: values.title,
+                url: values.url,
+                thumb: `https://img.youtube.com/vi/${
+                  values.url.split("?v=")[1]
+                }/hqdefault.jpg`,
+              };
+
+              videoService()
+                .addVideo({video: video, category: values.category})
+                .catch(() => alert("Erro ao tentar adicionar video"));
+
               clearValues();
               setModal(false);
-              return
+              return;
             }
-            alert('url não reconhecida!')
+            alert("url não reconhecida!");
           }}
         >
           <div>
@@ -69,6 +82,16 @@ export default function RegisterVideo() {
             />
             <input
               type="text"
+              placeholder="Categoria do video"
+              name="category"
+              min="1"
+              max="50"
+              value={values.category}
+              onChange={handleChange}
+              required
+            />
+            <input
+              type="text"
               placeholder="URL do video"
               name="url"
               min="28"
@@ -78,9 +101,6 @@ export default function RegisterVideo() {
               required
             />
             <button type="submit">Cadastrar</button>
-            {values.url.length >= 28 && values.url.length <= 40 ? (
-              <img src={values[url].split("v=")[1]} alt="" />
-            ) : null}
           </div>
         </form>
       ) : null}

@@ -1,11 +1,12 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Menu from '../src/components/Menu';
 import { StyledTimeline } from '../src/components/Timeline';
 import { StyledAluraTubes } from '../src/components/AluraTubes';
 
 import styled from 'styled-components';
 import config from '../config.json';
+import {videoService} from '../src/services/videoService';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -110,6 +111,14 @@ const AluraTubes = () => {
 
 const HomePage = () => {
   const [valorDoFiltro, setValorDoFiltro] = useState('');
+  const [playlists, setPlaylists] = useState({});
+
+  useEffect(() => {
+    videoService().getAllVideos().then(data => {
+      const newPlaylist = data
+      setPlaylists(newPlaylist)
+    })
+  }, [playlists])
 
   return (
     <>
@@ -120,7 +129,7 @@ const HomePage = () => {
       }}>
         <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro} />
         <Header />
-        <Timeline valorDaBusca={valorDoFiltro} playlists={config.playlists} />
+        <Timeline valorDaBusca={valorDoFiltro} playlists={playlists} />
         <AluraTubes />
       </main>
     </>
