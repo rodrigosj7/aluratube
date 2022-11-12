@@ -5,7 +5,7 @@ import useForm from "../../hooks/useForm";
 
 export default function RegisterVideo() {
   const [modal, setModal] = useState(false);
-  const { values, handleChange, clearValues } = useForm({
+  const { values, handleChange, clearValues, simpleValidate } = useForm({
     initialValue: { title: "", url: "", category: "" },
   });
 
@@ -18,12 +18,9 @@ export default function RegisterVideo() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            const isCorrectUrl =
-              /^((https|http):\/\/(www|m)\.?)?youtube.com\/(watch\/?)\?v=\w*$/.test(
-                values.url
-              );
+            const isCorrect = simpleValidate()
 
-            if (isCorrectUrl && values.url.split("?v=")[1].length === 11) {
+            if (isCorrect && values.url.split("?v=")[1].length === 11) {
               const video = {
                 title: values.title,
                 url: values.url,
@@ -38,9 +35,7 @@ export default function RegisterVideo() {
 
               clearValues();
               setModal(false);
-              return;
             }
-            alert("url não reconhecida!");
           }}
         >
           <div>
