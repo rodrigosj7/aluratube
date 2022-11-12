@@ -42,6 +42,13 @@ export const StyledUser = styled.div`
     h2 {
       font-size: 22px;
     }
+
+    span {
+      font-size: 16px;
+      opacity: .85;
+      padding-top: 4px;
+      border-top: 2px solid ${({ theme }) => theme.borderBase};
+    }
   }
 
   main {
@@ -53,6 +60,7 @@ export const StyledUser = styled.div`
     width: 90vw;
     height: 50px;
     padding: 4px;
+    border: 1px solid ${({ theme }) => theme.borderBase};
     background-color: ${({ theme }) => theme.backgroundLevel1};
 
     a {
@@ -63,6 +71,7 @@ export const StyledUser = styled.div`
       color: ${({ theme }) => theme.textColorBase};
       padding: 5px;
       border-radius: 34px;
+      border: 1px solid ${({ theme }) => theme.borderBase};
       background-color: ${({ theme }) => theme.backgroundLevel2};
     }
   }
