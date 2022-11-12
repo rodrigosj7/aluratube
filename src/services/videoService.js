@@ -1,4 +1,4 @@
-const api = "";
+const api = "/api/playlist";
 
 const getAllVideos = async () => {
   const response = await fetch(api);
