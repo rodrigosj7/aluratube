@@ -4,7 +4,7 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/sennshi/aluratube?style=for-the-badge)
 ![GitHub forks](https://img.shields.io/github/forks/sennshi/aluratube?style=for-the-badge)
 
-<img src="overview.png" alt="overview">
+<img align="center" src="overview.png" alt="overview">
 
 > O projeto é um clone do YouTube que está sendo feito/desenvolvido ao decorrer da Imersão React 5
 
