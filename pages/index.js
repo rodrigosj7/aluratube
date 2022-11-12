@@ -96,12 +96,12 @@ const AluraTubes = () => {
     <StyledAluraTubes>
       <h2>AluraTubes favoritos</h2>
       <div id="aluratubers">
-        {config.favorites.map((favorite) => {
+        {config.favorites.map((favorite, id) => {
           return (
-            <div key={favorite.name}>
+            <Link href={`/aluratuber/${id}`} key={favorite.name}>
               <img src={favorite.image} alt={`${favorite.name} profile image`}/>
               <p>@{favorite.name}</p>
-            </div>
+            </Link>
           )
         })}
       </div>

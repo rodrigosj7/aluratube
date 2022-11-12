@@ -5,16 +5,21 @@
   "banner-color": "#5C73B9",
   "favorites": [
     {
+      "username": "Mario Souto",
       "name": "omariosouto",
-      "image": "https://github.com/omariosouto.png"
+      "image": "https://github.com/omariosouto.png",
+      "channel": "http://youtube.com/c/DevSoutinho"
     },
     {
+      "username": "Paulo Silveira",
       "name": "peas",
       "image": "https://github.com/peas.png"
     },
     {
+      "username": "Rafaella Ballerini",
       "name": "raffaballerini",
-      "image": "https://github.com/rafaballerini.png"
+      "image": "https://github.com/rafaballerini.png",
+      "channel": "https://youtube.com/c/rafaellaballerini"
     }
   ],
   "playlists": {

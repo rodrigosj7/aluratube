@@ -19,11 +19,13 @@ export const StyledAluraTubes = styled.section`
     width: 90%;
     gap: 16px;
 
-    div {
+    a {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 4px;
+      text-decoration: none;
+      color: ${({ theme }) => theme.textColorBase};
 
       img {
         width: 87px;
