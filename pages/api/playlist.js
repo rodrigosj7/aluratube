@@ -9,10 +9,7 @@ const handler = (req, res) => {
 
       if (data) {
         if (!localPlaylists[data.category]) localPlaylists[data.category] = [];
-        localPlaylists[data.category] = [
-          data.video,
-          ...localPlaylists[data.category],
-        ];
+        localPlaylists[data.category].push(data.video)
 
         return res.status(200).json({ response: "video criado" });
       }

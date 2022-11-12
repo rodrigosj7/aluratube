@@ -1,26 +1,7 @@
 import { StyledRegisterVideo } from "./styles";
 import { useState } from "react";
 import { videoService } from "../../services/videoService";
-
-function useForm({ initialValue }) {
-  const [values, setValues] = useState(initialValue);
-
-  return {
-    values,
-    handleChange: (evento) => {
-      const value = evento.target.value;
-      const name = evento.target.name;
-
-      setValues({
-        ...values,
-        [name]: value,
-      });
-    },
-    clearValues: () => {
-      setValues({ title: "", url: "", category: "" });
-    },
-  };
-}
+import useForm from "../../hooks/useForm";
 
 export default function RegisterVideo() {
   const [modal, setModal] = useState(false);
