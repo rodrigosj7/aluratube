@@ -72,10 +72,10 @@ const Timeline = ({ valorDaBusca, playlists }) => {
 
                 return titleNormalized.includes(searchValueNormalized);
               }).map((video) => 
-                <Link key={video.url} 
-                  href={
-                    `/video/${video['url'].split('v=')[1]}?category=${playlistName}`
-                  }
+                <Link 
+                  key={video.url}
+                  href="/video/[url]"
+                  as={`/video/${video['url'].split('v=')[1]}?category=${playlistName}`}
                 >
                   <img src={video.thumb} alt={`${video.title} thumbnail`} />
                   <span>
@@ -98,7 +98,11 @@ const AluraTubes = () => {
       <div id="aluratubers">
         {config.favorites.map((favorite, id) => {
           return (
-            <Link href={`/aluratuber/${id}`} key={favorite.name}>
+            <Link 
+              href="/aluratuber/[id]"
+              as={`/aluratuber/${id}`}
+              key={favorite.name}
+            >
               <img src={favorite.image} alt={`${favorite.name} profile image`}/>
               <p>@{favorite.name}</p>
             </Link>
